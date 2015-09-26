@@ -41,7 +41,7 @@ app.controller('VisualisationController', function($scope, $http, $q, $interval)
                                 data: value
                             });
                             $scope.steps.sort(function(a, b) {
-                                return a.charAt(0) > b.charAt(0);
+                                return a.name.charAt(0) > b.name.charAt(0);
                             });
                         });
                     });
