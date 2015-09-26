@@ -55,6 +55,7 @@ app.controller('VisualisationController', ['$scope', '$http',
                 autorefresh = undefined;
             }
 
+        load();
         var autorefresh = $interval(load, 60000);
 
         $scope.$on('$destroy', function() {
