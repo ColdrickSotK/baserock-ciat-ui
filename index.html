@@ -11,8 +11,8 @@
     
     <div class="visualisation" ng-controller="VisualisationController">
         <div class="box pass"
-             ng-repeat="builder in builders.data">
-            {{builder}}
+             ng-repeat="(name, data) in builders.data">
+            {{name}}
         </div>
     </div>
 </body>
