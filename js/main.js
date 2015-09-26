@@ -48,6 +48,14 @@ app.controller('VisualisationController', function($scope, $http, $q, $interval)
                 });
         }
 
+        $scope.selected = null;
+        $scope.select = function(step, e) {
+            if (e) {
+                e.stopPropagation();
+            }
+            $scope.selected = step;
+        };
+
         function cancelRefresh() {
             if (angular.isDefined(autorefresh)) {
                 $interval.cancel(autorefresh);

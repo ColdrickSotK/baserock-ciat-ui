@@ -8,18 +8,20 @@
 </head>
 <body ng-app="ciat">
     <h1><em>Baserock</em> <span>|</span> CIAT</h1>
-    
-    <div class="visualisation" ng-controller="VisualisationController">
+    <div class="container" ng-controller="VisualisationController" ng-click="select()" style="height: 100%">
+    <div class="visualisation">
         <div class="box"
-             ng-class="{'pass': step.lastBuild.success, 'active': step.data.state == 'building', 'fail': !step.lastBuild.success}"
-             ng-repeat="step in steps">
+             ng-class="{'pass': step.lastBuild.success, 'active': step.data.state == 'building', 'fail': step.lastBuild.failed}"
+             ng-repeat="step in steps"
+             ng-click="select(step, $event)">
             {{step.name}}
         </div>
-        <div class="details"
+        <div class="detail"
              ng-show="selected">
-            <h3>{{step.name}}</h3>
-            <em>State:</em> {{step.data.state}}
+            <h3>{{selected.name}}</h3>
+            <em>State:</em> {{selected.data.state}}
         </div>
+    </div>
     </div>
 </body>
 </html>
