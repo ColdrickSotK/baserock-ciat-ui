@@ -10,11 +10,10 @@
     <h1><em>Baserock</em> <span>|</span> CIAT</h1>
     
     <div class="visualisation" ng-controller="VisualisationController">
-        {{ builders }}
-        <div class="box pass">Firehose</div>
-        <div class="box pass active">Build</div>
-        <div class="box fail">Deploy</div>
-        <div class="box pass">Test</div>
+        <div class="box pass"
+             ng-repeat="builder in builders.data">
+            {{builder}}
+        </div>
     </div>
 </body>
 </html>
