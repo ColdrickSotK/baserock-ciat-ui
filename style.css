@@ -43,6 +43,10 @@ h1>span {
         border-radius: 0.5em;
 }
 
+.box:hover {
+    cursor: pointer;
+}
+
 .pass {
         background: #77ee77;
         border: 2px solid #00dd00;
