@@ -8,7 +8,7 @@
 </head>
 <body ng-app="ciat">
     <h1><em>Baserock</em> <span>|</span> CIAT</h1>
-    <div class="container" ng-controller="VisualisationController" ng-click="select()" style="height: 100%">
+    <div class="container" ng-controller="VisualisationController" ng-click="select()">
     <div class="visualisation">
         <div class="box"
              ng-class="{'pass': step.lastBuild.success, 'active': step.data.state == 'building', 'fail': step.lastBuild.failed}"
@@ -18,7 +18,8 @@
         </div>
         <br />
         <div class="detail"
-             ng-show="selected">
+             ng-show="selected"
+             ng-click="$event.stopPropagation()">
             <h3>{{selected.name}}</h3>
             <strong>State:</strong> {{selected.data.state}}
             <br />
