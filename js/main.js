@@ -33,7 +33,8 @@ app.controller('VisualisationController', function($scope, $http, $q, $interval)
                         $http.get(buildsPath).then(function(response) {
                             var details = {
                                 success: checkInArray(response.data.text, 'successful'),
-                                failed: checkInArray(response.data.text, 'failed')
+                                failed: checkInArray(response.data.text, 'failed'),
+                                logs: response.data.logs
                             };
                             $scope.steps.push({
                                 name: key,

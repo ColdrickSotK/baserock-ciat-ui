@@ -20,6 +20,8 @@
              ng-show="selected">
             <h3>{{selected.name}}</h3>
             <em>State:</em> {{selected.data.state}}
+            <br />
+            <a ng-href="{{selected.lastBuild.logs[2][1]}}">Last Build Log</a>
         </div>
     </div>
     </div>
