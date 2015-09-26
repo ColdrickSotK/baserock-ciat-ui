@@ -11,9 +11,9 @@
     
     <div class="visualisation" ng-controller="VisualisationController">
         <div class="box"
-             ng-class="{'pass': step.lastBuild.success, 'active': step.data.status == 'building'}"
+             ng-class="{'pass': step.lastBuild.success, 'active': step.data.state == 'building'}"
              ng-repeat="step in steps">
-            {{step.name}}
+            {{step.name}} ({{step.data.state}})
         </div>
     </div>
 </body>
