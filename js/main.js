@@ -6,8 +6,8 @@ app.config(['$httpProvider', function($httpProvider) {
     }
 ]);
 
-app.controller('VisualisationController', ['$scope', '$http',
-    function($scope, $http) {
+app.controller('VisualisationController', ['$scope', '$http', '$interval',
+    function($scope, $http, $interval) {
         function formatBuild(response) {
             var success = false;
             if (response.data.text) {
