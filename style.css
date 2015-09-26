@@ -1,0 +1,73 @@
+html,body {
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+}
+
+body {
+        color: #bbb;
+        background: #444;
+        font-family: sans-serif;
+}
+
+h1 {
+        font-family: 'Sarpanch', sans-serif;
+        font-size: 32pt;
+        border-bottom: 2px solid #f80;
+        padding: 2.1em 1.5em 0.1em 1.5em;
+        box-shadow: inset 0 0 60px 10px #111;
+        margin: 0 -1em 0 -1em;
+        position: relative;
+        top: -2em;
+}
+
+h1>em {
+        font-style: normal;
+        color: #ddd;
+}
+
+h1>span {
+        font-style: normal;
+        color: #777;
+}
+
+.box {
+        color: black;
+        float: left;
+        padding: 1em;
+        margin: 1.4em;
+        box-shadow:6px 6px 10px 2px #111;
+        border-radius: 0.5em;
+}
+
+.pass {
+        background: #77ee77;
+        border: 2px solid #00dd00;
+}
+
+.fail {
+        background: #ff8888;
+        border: 2px solid #ff0000;
+}
+
+.active {
+        -webkit-animation:active 1s linear infinite;
+        animation:active 1s linear infinite;
+}
+
+@-webkit-keyframes active {
+          0%{box-shadow:0 0 0 1px #444, 0 0 0  4px rgba(255, 255, 78, 0.7),6px 6px 10px 2px #111}
+        100%{box-shadow:0 0 0 5px #444, 0 0 0 14px rgba(255, 255, 78, 0  ),6px 6px 10px 2px #111}
+}
+
+@keyframes active {
+          0%{box-shadow:0 0 0 1px #444, 0 0 0  4px rgba(255, 255, 78, 0.7),6px 6px 10px 2px #111}
+        100%{box-shadow:0 0 0 5px #444, 0 0 0 14px rgba(255, 255, 78, 0  ),6px 6px 10px 2px #111}
+}
+
+.visualisation {
+        margin-left: auto;
+        margin-right: auto;
+        display: table;
+}
+
