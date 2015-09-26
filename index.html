@@ -10,9 +10,9 @@
     <h1><em>Baserock</em> <span>|</span> CIAT</h1>
     
     <div class="visualisation" ng-controller="VisualisationController">
-        <div class="box pass"
-             ng-repeat="(name, data) in builders.data">
-            {{name}}
+        <div class="box"
+             ng-repeat="step in steps">
+            {{step.name}}
         </div>
     </div>
 </body>
