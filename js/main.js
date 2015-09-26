@@ -9,8 +9,14 @@ app.config(['$httpProvider', function($httpProvider) {
 app.controller('VisualisationController', ['$scope', '$http',
     function($scope, $http) {
         function formatBuild(response) {
+            var success = false;
+            if (response.data.text) {
+                if (response.data.text.indexOf('successful') > -1) {
+                    success = true;
+                }
+            }
             return {
-                success: response.data.text[response.data.text.length - 1] === 'successful',
+                success: success
             };
         }
 
