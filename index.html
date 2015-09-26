@@ -15,6 +15,11 @@
              ng-repeat="step in steps">
             {{step.name}}
         </div>
+        <div class="details"
+             ng-show="selected">
+            <h3>{{step.name}}</h3>
+            <em>State:</em> {{step.data.state}}
+        </div>
     </div>
 </body>
 </html>
