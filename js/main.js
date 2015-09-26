@@ -6,18 +6,14 @@ app.config(['$httpProvider', function($httpProvider) {
     }
 ]);
 
-app.controller('VisualisationController', ['$scope', '$http', '$interval',
-    function($scope, $http, $interval) {
-        function formatBuild(response) {
-            var success = false;
-            if (response.data.text) {
-                if (response.data.text.indexOf('successful') > -1) {
-                    success = true;
+app.controller('VisualisationController', function($scope, $http, $q) {
+        function checkInArray(array, key) {
+            if (array) {
+                if (array.indexOf(key) > -1) {
+                    return true;
                 }
             }
-            return {
-                success: success
-            };
+            return False;
         }
 
         function load() {
