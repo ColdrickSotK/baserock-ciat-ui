@@ -17,32 +17,31 @@ app.controller('VisualisationController', function($scope, $http, $q) {
         }
 
         function load() {
-           $scope.steps = [];
-           $http.get('http://ciat.baserock.org:8010/json/builders')
-               .then(function(builders) {
-                   angular.forEach(builders.data, function(value, key) {
-                       var lastBuildID = -1;
-                       if (value.state === 'building') {
-                           lastBuildID = value.cachedBuilds[value.cachedBuilds.length - 2];
-                       } else {
-                           lastBuildID = value.cachedBuilds[value.cachedBuilds.length - 1];
-                       }
+            $scope.steps = [];
+            $http.get('http://ciat.baserock.org:8010/json/builders')
+                .then(function(builders) {
+                    angular.forEach(builders.data, function(value, key) {
+                        var lastBuildID;
+                        if (value.state === 'building') {
+                            lastBuildID = value.cachedBuilds[value.cachedBuilds.length - 2];
+                        } else {
+                            lastBuildID = value.cachedBuilds[value.cachedBuilds.length - 1];
+                        }
 
-                       var previous = null;
-                       if (lastBuildID != -1) {
-                           var buildsPath = 'http://ciat.baserock.org:8010/json/builders/' +
-                                            key + '/builds/' + lastBuildID;
-                           previous = $http.get(buildsPath).then(formatBuild);
-                       }
-
-                       var step = {
-                           name: key,
-                           lastBuild: previous,
-                           data: value
-                       }
-                       $scope.steps.push(step);
-                   });
-               });
+                    var buildsPath = 'http://ciat.baserock.org:8010/json/builders/' +
+                                      key + '/builds/' + lastBuildID;
+                    $http.get(buildsPath).then(function(response) {
+                        var details = {
+                            success: checkInArray(response.data.text, 'successful'),
+                            failed: checkInArray(response.data.text, 'failed')
+                        };
+                        $scope.steps.push({
+                            name: key,
+                            lastBuild: details,
+                            data: value
+                        });
+                    });
+                });
         }
 
         function cancelRefresh() {
