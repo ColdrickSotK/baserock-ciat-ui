@@ -79,6 +79,7 @@ h1>span {
 
 .detail {
     background: #eee;
+    color: black;
     display: block;
     padding: 1em;
     border-radius: 0.5em;
