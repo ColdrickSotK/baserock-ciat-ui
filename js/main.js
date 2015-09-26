@@ -6,7 +6,7 @@ app.config(['$httpProvider', function($httpProvider) {
     }
 ]);
 
-app.controller('VisualisationController', function($scope, $http, $q) {
+app.controller('VisualisationController', function($scope, $http, $q, $interval) {
         function checkInArray(array, key) {
             if (array) {
                 if (array.indexOf(key) > -1) {
@@ -28,17 +28,21 @@ app.controller('VisualisationController', function($scope, $http, $q) {
                             lastBuildID = value.cachedBuilds[value.cachedBuilds.length - 1];
                         }
 
-                    var buildsPath = 'http://ciat.baserock.org:8010/json/builders/' +
-                                      key + '/builds/' + lastBuildID;
-                    $http.get(buildsPath).then(function(response) {
-                        var details = {
-                            success: checkInArray(response.data.text, 'successful'),
-                            failed: checkInArray(response.data.text, 'failed')
-                        };
-                        $scope.steps.push({
-                            name: key,
-                            lastBuild: details,
-                            data: value
+                        var buildsPath = 'http://ciat.baserock.org:8010/json/builders/' +
+                                          key + '/builds/' + lastBuildID;
+                        $http.get(buildsPath).then(function(response) {
+                            var details = {
+                                success: checkInArray(response.data.text, 'successful'),
+                                failed: checkInArray(response.data.text, 'failed')
+                            };
+                            $scope.steps.push({
+                                name: key,
+                                lastBuild: details,
+                                data: value
+                            });
+                            $scope.steps.sort(function(a, b) {
+                                return a.charAt(0) > b.charAt(0);
+                            });
                         });
                     });
                 });
