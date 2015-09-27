@@ -76,7 +76,6 @@ h1>span {
         font-size: 90%;
         position: absolute;
         text-align: center;
-        overflow: auto;
         width: 100%;
         top: 45%;
 }
@@ -88,6 +87,10 @@ h1>span {
     padding: 1em;
     border-radius: 0.5em;
     width: 50%;
+}
+
+.detail-contents {
+    text-align: left;
 }
 
 .container {

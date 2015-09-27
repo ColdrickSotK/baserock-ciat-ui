@@ -21,9 +21,10 @@
              ng-show="selected"
              ng-click="$event.stopPropagation()">
             <h3>{{selected.name}}</h3>
-            <strong>State:</strong> {{selected.data.state}}
-            <br />
-            <a ng-href="{{selected.lastBuild.logs[2][1]}}">Last Build Log</a>
+            <div class="detail-contents">
+                <p><strong>State:</strong> {{selected.data.state}}</p>
+                <a ng-href="{{selected.lastBuild.logs[2][1]}}">Last Build Log</a>
+            </div>
         </div>
     </div>
     </div>
