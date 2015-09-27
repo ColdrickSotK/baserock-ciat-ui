@@ -23,7 +23,12 @@
             <h3>{{selected.name}}</h3>
             <div class="detail-contents">
                 <p><strong>State:</strong> {{selected.data.state}}</p>
-                <a ng-href="{{selected.lastBuild.logs[2][1]}}">Last Build Log</a>
+                <p><strong>Most Recent Logs:</strong></p>
+                <ul>
+                    <li ng-repeat="(key, value) in selected.lastBuild.logs">
+                        <a ng-href="{{value}}">{{key}}</a>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
