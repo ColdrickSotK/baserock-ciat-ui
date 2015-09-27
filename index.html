@@ -26,7 +26,7 @@
                 <p><strong>Most Recent Logs:</strong></p>
                 <ul>
                     <li ng-repeat="(key, value) in selected.lastBuild.logs">
-                        <a ng-href="{{value}}">{{key}}</a>
+                        <a ng-href="{{value[1]}}">{{key}} {{value[0]}}</a>
                     </li>
                 </ul>
             </div>
