@@ -25,8 +25,8 @@
                 <p><strong>State:</strong> {{selected.data.state}}</p>
                 <p><strong>Most Recent Logs:</strong></p>
                 <ul>
-                    <li ng-repeat="(key, value) in selected.lastBuild.logs">
-                        <a ng-href="{{value[1]}}">{{key}} {{value[0]}}</a>
+                    <li ng-repeat="step in selected.lastBuild.steps">
+                        <a ng-href="{{step.logs[0][1]}}">{{step.name}} {{step.logs[0][0]}}</a>
                     </li>
                 </ul>
             </div>
