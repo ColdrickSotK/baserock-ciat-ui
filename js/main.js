@@ -34,7 +34,9 @@ app.controller('VisualisationController', function($scope, $http, $q, $interval)
                             var details = {
                                 success: checkInArray(response.data.text, 'successful'),
                                 failed: checkInArray(response.data.text, 'failed'),
-                                steps: response.data.steps
+                                steps: response.data.steps,
+                                sourceStamps: response.data.sourceStamps,
+                                number: response.data.number
                             };
                             $scope.steps.push({
                                 name: key,
