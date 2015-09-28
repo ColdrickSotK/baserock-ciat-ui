@@ -1,0 +1,25 @@
+<div class="visualisation">
+    <div class="box"
+         ng-class="{'pass': step.lastBuild.success, 'active': step.data.state == 'building', 'fail': step.lastBuild.failed}"
+         ng-repeat="step in steps"
+         ng-click="select(step, $event)"
+         ng-blur="select()">
+        {{step.name}}
+    </div>
+    <br />
+    <div class="detail"
+         ng-show="selected"
+         ng-click="$event.stopPropagation()">
+        <h3>{{selected.name}}</h3>
+        <div class="detail-contents">
+            <p><strong>State:</strong> {{selected.data.state}}</p>
+            <p><strong>Last Build:</strong> {{selected.lastBuild.number}} at {{selected.lastBuild.sourceStamps[0].changes[0].at}} 
+            <p><strong>Logs for {{selected.lastBuild.number}}:</strong></p>
+            <ul>
+                <li ng-repeat="step in selected.lastBuild.steps">
+                    <a ng-href="{{step.logs[0][1]}}">{{step.name}} {{step.logs[0][0]}}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
