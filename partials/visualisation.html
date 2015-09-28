@@ -14,13 +14,20 @@
         <h3>{{selected.name}}</h3>
         <div class="detail-contents">
             <p><strong>State:</strong> {{selected.data.state}}</p>
-            <p><strong>Last Build:</strong> {{selected.lastBuild.number}} at {{selected.lastBuild.sourceStamps[0].changes[0].at}} 
+            <p>
+                <strong>Last Build:</strong>
+                <a ng-href="/#/builders/{{selected.name}}/builds/{{selected.lastBuild.number}}">
+                    {{selected.lastBuild.number}} at
+                    {{selected.lastBuild.sourceStamps[0].changes[0].at}}
+                </a>
+            </p>
             <p><strong>Logs for {{selected.lastBuild.number}}:</strong></p>
             <ul>
                 <li ng-repeat="step in selected.lastBuild.steps">
                     <a ng-href="{{step.logs[0][1]}}">{{step.name}} {{step.logs[0][0]}}</a>
                 </li>
             </ul>
+            <p><a ng-href="/#/builders/{{selected.name}}/">Full builder details</a></p>
         </div>
     </div>
 </div>
