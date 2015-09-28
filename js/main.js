@@ -1,3 +1,4 @@
+var apiBase = 'http://ciat.baserock.org:8010/json';
 var app = angular.module('ciat', ['ngRoute']);
 
 app.config(['$httpProvider', function($httpProvider) {
@@ -34,7 +35,7 @@ app.controller('VisualisationController', function($scope, $http, $q, $interval)
 
         function load() {
             $scope.steps = [];
-            $http.get('http://ciat.baserock.org:8010/json/builders')
+            $http.get(apiBase + '/builders')
                 .then(function(builders) {
                     angular.forEach(builders.data, function(value, key) {
                         var lastBuildID;
@@ -44,8 +45,8 @@ app.controller('VisualisationController', function($scope, $http, $q, $interval)
                             lastBuildID = value.cachedBuilds[value.cachedBuilds.length - 1];
                         }
 
-                        var buildsPath = 'http://ciat.baserock.org:8010/json/builders/' +
-                                          key + '/builds/' + lastBuildID;
+                        var buildsPath = apiBase + '/builders/' + key +
+                                         '/builds/' + lastBuildID;
                         $http.get(buildsPath).then(function(response) {
                             var details = {
                                 success: checkInArray(response.data.text, 'successful'),
@@ -93,6 +94,18 @@ app.controller('VisualisationController', function($scope, $http, $q, $interval)
 
         $scope.$on('$destroy', function() {
           cancelRefresh();
+        });
+    }
+);
+
+
+app.controller('BuilderDetailController',
+    function($scope, $http, $routeParams) {
+        $http.get(apiBase + '/builders/' + $routeParams.name).then(function(builder) {
+            $scope.builder = {
+                name: $routeParams.name,
+                data: builder.data
+            };
         });
     }
 );
