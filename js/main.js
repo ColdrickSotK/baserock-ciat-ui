@@ -13,7 +13,7 @@ app.controller('VisualisationController', function($scope, $http, $q, $interval)
                     return true;
                 }
             }
-            return False;
+            return false;
         }
 
         function load() {
@@ -73,4 +73,4 @@ app.controller('VisualisationController', function($scope, $http, $q, $interval)
           cancelRefresh();
         });
     }
-]);
+);
