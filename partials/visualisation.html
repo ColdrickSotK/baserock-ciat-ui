@@ -1,4 +1,5 @@
-<div class="visualisation">
+<div class="visualisation"
+     ng-style="selected && {'top': '35%'}">
     <div class="box"
          ng-class="{'pass': step.lastBuild.success, 'active': step.data.state == 'building', 'fail': step.lastBuild.failed}"
          ng-repeat="step in steps"
