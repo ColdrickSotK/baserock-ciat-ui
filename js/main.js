@@ -44,7 +44,9 @@ app.controller('VisualisationController', function($scope, $http, $q, $interval)
                                 data: value
                             });
                             $scope.steps.sort(function(a, b) {
-                                return a.name.charAt(0) > b.name.charAt(0);
+                                var left = parseInt(a.name.split('.', 1));
+                                var right = parseInt(b.name.split('.', 1));
+                                return left - right;
                             });
                         });
                     });
