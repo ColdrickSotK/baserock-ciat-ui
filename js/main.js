@@ -1,10 +1,26 @@
-var app = angular.module('ciat', []);
+var app = angular.module('ciat', ['ngRoute']);
 
 app.config(['$httpProvider', function($httpProvider) {
         $httpProvider.defaults.useXDomain = true;
         delete $httpProvider.defaults.headers.common['X-Requested-With'];
     }
 ]);
+
+app.config(['$routeProvider', function($routeProvider) {
+    $routeProvider.when('/', {
+        controller: 'VisualisationController',
+        templateUrl: 'partials/visualisation.html'
+    })
+    .when('/builders/:name', {
+        controller: 'BuilderDetailController',
+        templateUrl: 'partials/builder_detail.html'
+    })
+    .when('/builders/:name/build/:number', {
+        controller: 'BuildDetailController',
+        templateUrl: 'partials/build_detail.html'
+    })
+    .otherwise({redirectTo: '/'});
+}]);
 
 app.controller('VisualisationController', function($scope, $http, $q, $interval) {
         function checkInArray(array, key) {

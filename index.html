@@ -4,35 +4,12 @@
     <link href='https://fonts.googleapis.com/css?family=Sarpanch:800' rel='stylesheet' type='text/css'>
     <link href='style.css' rel='stylesheet' type='text/css'>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.28/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.28/angular-route.min.js"></script>
     <script src="js/main.js"></script>
 </head>
 <body ng-app="ciat">
     <h1><em>Baserock</em> <span>|</span> CIAT</h1>
-    <div class="container" ng-controller="VisualisationController" ng-click="select()">
-    <div class="visualisation">
-        <div class="box"
-             ng-class="{'pass': step.lastBuild.success, 'active': step.data.state == 'building', 'fail': step.lastBuild.failed}"
-             ng-repeat="step in steps"
-             ng-click="select(step, $event)">
-            {{step.name}}
-        </div>
-        <br />
-        <div class="detail"
-             ng-show="selected"
-             ng-click="$event.stopPropagation()">
-            <h3>{{selected.name}}</h3>
-            <div class="detail-contents">
-                <p><strong>State:</strong> {{selected.data.state}}</p>
-                <p><strong>Last Build:</strong> {{selected.lastBuild.number}} at {{selected.lastBuild.sourceStamps[0].changes[0].at}} 
-                <p><strong>Logs for {{selected.lastBuild.number}}:</strong></p>
-                <ul>
-                    <li ng-repeat="step in selected.lastBuild.steps">
-                        <a ng-href="{{step.logs[0][1]}}">{{step.name}} {{step.logs[0][0]}}</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
+    <div class="container" ng-view>
     </div>
 </body>
 </html>
