@@ -2,14 +2,14 @@
     <div class="box"
          ng-class="{'pass': step.lastBuild.success, 'active': step.data.state == 'building', 'fail': step.lastBuild.failed}"
          ng-repeat="step in steps"
-         ng-click="select(step, $event)"
-         ng-blur="select()">
+         ng-click="select(step, $event)">
         {{step.name}}
     </div>
     <br />
     <div class="detail"
          ng-show="selected"
          ng-click="$event.stopPropagation()">
+        <a class="close" ng-click="select()">&times;</a>
         <h3>{{selected.name}}</h3>
         <div class="detail-contents">
             <p><strong>State:</strong> {{selected.data.state}}</p>
