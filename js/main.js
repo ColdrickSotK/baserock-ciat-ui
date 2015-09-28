@@ -74,7 +74,11 @@ app.controller('VisualisationController', function($scope, $http, $q, $interval)
             if (e) {
                 e.stopPropagation();
             }
-            $scope.selected = step;
+            if ($scope.selected === step) {
+                $scope.selected = null;
+            } else {
+                $scope.selected = step;
+            }
         };
 
         function cancelRefresh() {
