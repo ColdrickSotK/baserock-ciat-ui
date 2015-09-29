@@ -1,11 +1,43 @@
 <div class="visualisation"
      ng-style="selected && {'top': '35%'}">
-    <div class="box"
-         ng-class="{'pass': step.lastBuild.success, 'active': step.data.state == 'building', 'fail': step.lastBuild.failed}"
-         ng-repeat="step in steps"
-         ng-click="select(step, $event)">
-        {{step.name}}
+
+
+    <div class="lane">
+        <div class="box"
+             ng-class="{'pass': step.lastBuild.success, 'active': step.data.state == 'building', 'fail': step.lastBuild.failed}"
+             ng-repeat="step in integrations"
+             ng-click="select(step, $event)">
+            {{step.name}}
+        </div>
     </div>
+
+    <div class="lane">
+        <div class="box"
+             ng-class="{'pass': step.lastBuild.success, 'active': step.data.state == 'building', 'fail': step.lastBuild.failed}"
+             ng-repeat="step in builds"
+             ng-click="select(step, $event)">
+            {{step.name}}
+        </div>
+    </div>
+
+    <div class="lane">
+        <div class="box"
+             ng-class="{'pass': step.lastBuild.success, 'active': step.data.state == 'building', 'fail': step.lastBuild.failed}"
+             ng-repeat="step in deploys"
+             ng-click="select(step, $event)">
+            {{step.name}}
+        </div>
+    </div>
+
+    <div class="lane">
+        <div class="box"
+             ng-class="{'pass': step.lastBuild.success, 'active': step.data.state == 'building', 'fail': step.lastBuild.failed}"
+             ng-repeat="step in tests"
+             ng-click="select(step, $event)">
+            {{step.name}}
+        </div>
+    </div>
+
     <br />
     <div class="detail"
          ng-show="selected"

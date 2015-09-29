@@ -35,6 +35,10 @@ app.controller('VisualisationController', function($scope, $http, $q, $interval)
 
         function load() {
             $scope.steps = [];
+            $scope.integrations = [];
+            $scope.builds = [];
+            $scope.deploys = [];
+            $scope.tests = [];
             $http.get(apiBase + '/builders')
                 .then(function(builders) {
                     angular.forEach(builders.data, function(value, key) {
@@ -55,11 +59,38 @@ app.controller('VisualisationController', function($scope, $http, $q, $interval)
                                 sourceStamps: response.data.sourceStamps,
                                 number: response.data.number
                             };
-                            $scope.steps.push({
-                                name: key,
-                                lastBuild: details,
-                                data: value
-                            });
+
+                            if (key.indexOf("Integration") > -1) {
+                                $scope.integrations.push({
+                                    name: key,
+                                    lastBuild: details,
+                                    data: value
+                                });
+                            }
+                            else if (key.indexOf("Build") > -1) {
+                                $scope.builds.push({
+                                    name: key,
+                                    lastBuild: details,
+                                    data: value
+                                });
+                            }
+                            else if(key.indexOf("Deploy") > -1) {
+                                $scope.deploys.push({
+                                    name: key,
+                                    lastBuild: details,
+                                    data: value
+                                });
+                            }
+                            else if(key.indexOf("Test") > -1) {
+                                $scope.tests.push({
+                                    name: key,
+                                    lastBuild: details,
+                                    data: value
+                                });
+                            }
+
+
+
                             $scope.steps.sort(function(a, b) {
                                 var left = parseInt(a.name.split('.', 1));
                                 var right = parseInt(b.name.split('.', 1));
