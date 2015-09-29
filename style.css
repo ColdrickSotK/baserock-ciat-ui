@@ -84,10 +84,8 @@ h1>em>a:hover {
 
 .visualisation {
         font-size: 90%;
-        position: absolute;
         text-align: center;
-        width: 100%;
-        top: 45%;
+        margin: 4em 0 2em 0;
 }
 
 .detail {
@@ -101,10 +99,6 @@ h1>em>a:hover {
 
 .detail-contents {
     text-align: left;
-}
-
-.content {
-    height: 85%;
 }
 
 .container {
