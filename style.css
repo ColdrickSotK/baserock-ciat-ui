@@ -53,6 +53,10 @@ h1>em>a:hover {
         border-radius: 0.5em;
 }
 
+.lane.h3 {
+        color: white;
+}
+
 .box:hover {
     cursor: pointer;
 }

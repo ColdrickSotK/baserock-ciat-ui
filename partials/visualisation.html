@@ -4,9 +4,12 @@
 
     <div class="row">
 
-        <div class="lane col-md-2"></div>
+        <div class="lane col-md-2">
+            <h3>Change detection</h3>
+        </div>
 
         <div class="lane col-md-2">
+            <h3>Integration</h3>
             <div class="box"
                  ng-class="{'pass': step.lastBuild.success, 'active': step.data.state == 'building', 'fail': step.lastBuild.failed}"
                  ng-repeat="step in integrations"
@@ -16,6 +19,7 @@
         </div>
 
         <div class="lane col-md-2">
+            <h3>Build</h3>
             <div class="box"
                  ng-class="{'pass': step.lastBuild.success, 'active': step.data.state == 'building', 'fail': step.lastBuild.failed}"
                  ng-repeat="step in builds"
@@ -25,6 +29,7 @@
         </div>
 
         <div class="lane col-md-2">
+            <h3>Provisioning</h3>
             <div class="box"
                  ng-class="{'pass': step.lastBuild.success, 'active': step.data.state == 'building', 'fail': step.lastBuild.failed}"
                  ng-repeat="step in deploys"
@@ -34,6 +39,7 @@
         </div>
 
         <div class="lane col-md-2">
+            <h3>Automatic test</h3>
             <div class="box"
                  ng-class="{'pass': step.lastBuild.success, 'active': step.data.state == 'building', 'fail': step.lastBuild.failed}"
                  ng-repeat="step in tests"
@@ -42,7 +48,9 @@
             </div>
         </div>
 
-        <div class="lane col-md-2"></div>
+        <div class="lane col-md-2">
+            <h3>Publishing</h3>
+        </div>
 
     </div>
 
