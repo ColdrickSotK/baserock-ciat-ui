@@ -50,6 +50,12 @@
 
         <div class="lane col-md-2">
             <h3>Publishing</h3>
+            <div class="box"
+                 ng-class="{'pass': step.lastBuild.success, 'active': step.data.state == 'building', 'fail': step.lastBuild.failed}"
+                 ng-repeat="step in publishings"
+                 ng-click="select(step, $event)">
+                {{step.name}}
+            </div>
         </div>
 
     </div>

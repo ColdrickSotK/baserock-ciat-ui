@@ -39,6 +39,7 @@ app.controller('VisualisationController', function($scope, $http, $q, $interval)
             $scope.builds = [];
             $scope.deploys = [];
             $scope.tests = [];
+            $scope.publishings = [];
             $http.get(apiBase + '/builders')
                 .then(function(builders) {
                     angular.forEach(builders.data, function(value, key) {
@@ -83,6 +84,13 @@ app.controller('VisualisationController', function($scope, $http, $q, $interval)
                             }
                             else if(key.indexOf("Test") > -1) {
                                 $scope.tests.push({
+                                    name: key,
+                                    lastBuild: details,
+                                    data: value
+                                });
+                            }
+                            else if(key.indexOf("Publishing") > -1) {
+                                $scope.publishings.push({
                                     name: key,
                                     lastBuild: details,
                                     data: value
