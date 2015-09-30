@@ -44,18 +44,30 @@ app.controller('VisualisationController', function($scope, $http, $q, $interval)
                 .then(function(builders) {
                     angular.forEach(builders.data, function(value, key) {
                         var lastBuildID;
-                        if (value.state === 'building') {
+                        var currentBuildStarted;
+                        var state = value.state;
+
+                        var latestBuildNumber = value.cachedBuilds.length - 1;
+                        var latestBuildsPath = apiBase + '/builders/' + key +
+                                         '/builds/' + latestBuildNumber;
+                        $http.get(latestBuildsPath).then(function(estimationResponse) {
+
+                        var currentTime = Math.floor((new Date()).getTime() / 1000)
+                        var timeRunning = 0;
+                        if (state === 'building') {
                             lastBuildID = value.cachedBuilds[value.cachedBuilds.length - 2];
+                             timeRunning = currentTime - estimationResponse.data.times[0];
                         } else {
                             lastBuildID = value.cachedBuilds[value.cachedBuilds.length - 1];
                         }
 
                         var buildsPath = apiBase + '/builders/' + key +
                                          '/builds/' + lastBuildID;
-                        var currentTime = Math.round(new Date().getTime() / 1000);
+
 
                         $http.get(buildsPath).then(function(response) {
-                        var previousTime = Math.round(response.data.times[0] - response.data.times[1])
+                            var progress = 100;
+                            var previousTime = response.data.times[1] - response.data.times[0];
                             var details = {
                                 success: checkInArray(response.data.text, 'successful'),
                                 failed: checkInArray(response.data.text, 'failed'),
@@ -72,10 +84,25 @@ app.controller('VisualisationController', function($scope, $http, $q, $interval)
                                 });
                             }
                             else if (key.indexOf("Build") > -1) {
+                                var progressStyle = "progress-bar-success progress-bar-striped"
+                                if (state === "building" ) {
+                                    progressStyle = "progress-bar-warning progress-bar-striped active"
+                                    progress = (timeRunning * 100) / previousTime;
+                                    //alert (currentTime)
+                                    //alert (estimationResponse.data.times[0])
+                                    //alert (timeRunning)
+                                    //alert (previousTime)
+                                    if (progress > 100 ) {
+                                        progress = 90;
+                                    }
+                                }
                                 $scope.builds.push({
                                     name: key,
                                     lastBuild: details,
-                                    data: value
+                                    data: value,
+                                    progress: progress,
+                                    style: progressStyle
+
                                 });
                             }
                             else if(key.indexOf("Deploy") > -1) {
@@ -107,6 +134,7 @@ app.controller('VisualisationController', function($scope, $http, $q, $interval)
                                 var right = parseInt(b.name.split('.', 1));
                                 return left - right;
                             });
+                        });
                         });
                     });
                 });
