@@ -52,7 +52,10 @@ app.controller('VisualisationController', function($scope, $http, $q, $interval)
 
                         var buildsPath = apiBase + '/builders/' + key +
                                          '/builds/' + lastBuildID;
+                        var currentTime = Math.round(new Date().getTime() / 1000);
+
                         $http.get(buildsPath).then(function(response) {
+                        var previousTime = Math.round(response.data.times[0] - response.data.times[1])
                             var details = {
                                 success: checkInArray(response.data.text, 'successful'),
                                 failed: checkInArray(response.data.text, 'failed'),
