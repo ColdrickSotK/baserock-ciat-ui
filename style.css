@@ -53,6 +53,10 @@ h1>em>a:hover {
         border-radius: 0.5em;
 }
 
+.lane {
+    width: 20%;
+    margin: 0 auto;
+}
 .lane.h3 {
         color: white;
 }
@@ -90,6 +94,14 @@ h1>em>a:hover {
         font-size: 90%;
         text-align: center;
         margin: 4em 0 2em 0;
+}
+
+
+.boxes {
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+    text-align: center;
 }
 
 .detail {
