@@ -57,8 +57,11 @@ h1>em>a:hover {
     width: 20%;
     margin: 0 auto;
 }
-.lane.h3 {
-        color: white;
+.lanelink:link {
+    color: white;
+}
+.lanelink:hover {
+    color: #F84525;
 }
 
 .box:hover {

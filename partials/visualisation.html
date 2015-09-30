@@ -5,11 +5,11 @@
     <div class="row boxes">
 
         <div class="lane col-md-2 ng-hide">
-            <h3>Change detection</h3>
+            <a class="lanelink" href="http://wiki.baserock.org/ciat/"><h3>Change detection</h3></a>
         </div>
 
         <div class="lane col-md-2">
-            <h3>Integration</h3>
+            <a class="lanelink" href="http://wiki.baserock.org/ciat/"><h3>Integration</h3></a>
             <div class="box"
                  ng-class="{'pass': step.lastBuild.success, 'active': step.data.state == 'building', 'fail': step.lastBuild.failed}"
                  ng-repeat="step in integrations"
@@ -19,7 +19,7 @@
         </div>
 
         <div class="lane col-md-2">
-            <h3>Build</h3>
+            <a class="lanelink" href="http://wiki.baserock.org/ciat/"><h3>Build</h3></a>
             <div class="box"
                  ng-class="{'pass': step.lastBuild.success, 'active': step.data.state == 'building', 'fail': step.lastBuild.failed}"
                  ng-repeat="step in builds"
@@ -29,7 +29,7 @@
         </div>
 
         <div class="lane col-md-2">
-            <h3>Provisioning</h3>
+            <a class="lanelink" href="http://wiki.baserock.org/ciat/"><h3>Provisioning</h3></a>
             <div class="box"
                  ng-class="{'pass': step.lastBuild.success, 'active': step.data.state == 'building', 'fail': step.lastBuild.failed}"
                  ng-repeat="step in deploys"
@@ -39,7 +39,7 @@
         </div>
 
         <div class="lane col-md-2">
-            <h3>Automatic test</h3>
+            <a class="lanelink" href="http://wiki.baserock.org/ciat/"><h3>Automatic test</h3></a>
             <div class="box"
                  ng-class="{'pass': step.lastBuild.success, 'active': step.data.state == 'building', 'fail': step.lastBuild.failed}"
                  ng-repeat="step in tests"
@@ -49,7 +49,7 @@
         </div>
 
         <div class="lane col-md-2">
-            <h3>Publishing</h3>
+            <a class="lanelink" href="http://wiki.baserock.org/ciat/"><h3>Publishing</h3></a>
             <div class="box"
                  ng-class="{'pass': step.lastBuild.success, 'active': step.data.state == 'building', 'fail': step.lastBuild.failed}"
                  ng-repeat="step in publishings"
