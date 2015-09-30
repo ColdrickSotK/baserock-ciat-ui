@@ -60,6 +60,9 @@ h1>em>a:hover {
 .lanelink:link {
     color: white;
 }
+.lanelink:visited {
+    color: white;
+}
 .lanelink:hover {
     color: #F84525;
 }
