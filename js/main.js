@@ -92,7 +92,7 @@ app.controller('VisualisationController', function($scope, $http, $q, $interval)
                                     data: value
                                 });
                             }
-                            else if(key.indexOf("Publishing") > -1) {
+                            else if(key.indexOf("Publish") > -1) {
                                 $scope.publishings.push({
                                     name: key,
                                     lastBuild: details,
