@@ -126,3 +126,7 @@ h1>em>a:hover {
 .container {
     color: #111;
 }
+
+.progress {
+    background-color: grey;
+}
