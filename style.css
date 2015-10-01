@@ -51,6 +51,7 @@ h1>em>a:hover {
         margin: 1.4em;
         box-shadow:6px 6px 10px 2px #111;
         border-radius: 0.5em;
+        width: 80%;
 }
 
 .lane {
