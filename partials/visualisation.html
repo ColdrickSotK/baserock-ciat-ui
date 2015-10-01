@@ -46,7 +46,7 @@
         </div>
 
         <div class="lane col-xs-2">
-            <a class="lanelink" href="http://wiki.baserock.org/ciat/"><h3>Automatic test</h3></a>
+            <a class="lanelink" href="http://wiki.baserock.org/ciat/"><h3>Test</h3></a>
             <div class="box"
                  ng-class="{'pass': step.lastBuild.success, 'active': step.data.state == 'building', 'fail': step.lastBuild.failed}"
                  ng-repeat="step in tests"
