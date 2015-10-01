@@ -26,11 +26,11 @@
                      ng-class="{'pass': step.lastBuild.success, 'active': step.data.state == 'building', 'fail': step.lastBuild.failed}"
                      ng-click="select(step, $event)">
                     {{step.name}}
-                </div>
-                <div class="progress">
-                    <div class="progress-bar {{step.style}}" role="progressbar" aria-valuenow="{{step.progress}}" aria-valuemin="0" aria-valuemax="100" style="width: {{step.progress}}%">
-                        <span class="sr-only">{{step.progress}}% Complete</span>
-                                </div>
+                    <div class="progress">
+                        <div class="progress-bar {{step.style}}" role="progressbar" aria-valuenow="{{step.progress}}" aria-valuemin="0" aria-valuemax="100" style="width: {{step.progress}}%">
+                            <span class="sr-only">{{step.progress}}% Complete</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
