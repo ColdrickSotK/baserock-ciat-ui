@@ -48,6 +48,9 @@ app.controller('VisualisationController', function($scope, $http, $q, $interval)
                         var state = value.state;
 
                         var latestBuildNumber = value.cachedBuilds.length - 1;
+                        if (state === 'building') {
+                            latestBuildNumber = value.currentBuilds[0];
+                        }
                         var latestBuildsPath = apiBase + '/builders/' + key +
                                          '/builds/' + latestBuildNumber;
                         $http.get(latestBuildsPath).then(function(estimationResponse) {
@@ -82,6 +85,7 @@ app.controller('VisualisationController', function($scope, $http, $q, $interval)
                                     $scope.integrations.push({
                                         name: key,
                                         lastBuild: details,
+                                        currentBuild: estimationResponse.data,
                                         data: value
                                     });
                                 }
@@ -101,16 +105,17 @@ app.controller('VisualisationController', function($scope, $http, $q, $interval)
                                     $scope.builds.push({
                                         name: key,
                                         lastBuild: details,
+                                        currentBuild: estimationResponse.data,
                                         data: value,
                                         progress: progress,
                                         style: progressStyle
-    
                                     });
                                 }
                                 else if(key.indexOf("Deploy") > -1) {
                                     $scope.deploys.push({
                                         name: key,
                                         lastBuild: details,
+                                        currentBuild: estimationResponse.data,
                                         data: value
                                     });
                                 }
@@ -118,6 +123,7 @@ app.controller('VisualisationController', function($scope, $http, $q, $interval)
                                     $scope.tests.push({
                                         name: key,
                                         lastBuild: details,
+                                        currentBuild: estimationResponse.data,
                                         data: value
                                     });
                                 }
@@ -125,6 +131,7 @@ app.controller('VisualisationController', function($scope, $http, $q, $interval)
                                     $scope.publishings.push({
                                         name: key,
                                         lastBuild: details,
+                                        currentBuild: estimationResponse.data,
                                         data: value
                                     });
                                 }
@@ -157,6 +164,7 @@ app.controller('VisualisationController', function($scope, $http, $q, $interval)
             }
             else {
                 $scope.selected.state = "Idle";
+                $scope.selected.class = "hide";
             }
         };
 

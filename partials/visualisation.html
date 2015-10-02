@@ -75,6 +75,20 @@
         <h3>{{selected.name}}</h3>
         <div class="detail-contents">
             <p><strong>State:</strong> {{selected.state}}</p>
+            <p class="{{selected.class}}">
+                <strong>Current Job:</strong>
+                <a ng-href="http://ciat.baserock.org:8010/builders/{{selected.name}}/builds/{{selected.currentBuild.number}}">
+                    {{selected.currentBuild.sourceStamps[0].changes[0].at}}
+                    / Job ID: {{selected.currentBuild.number}}
+                </a>
+            </p>
+            <p class="{{selected.class}}"><strong>Current Job logs:</strong></p>
+            <ul class="{{selected.class}}">
+                <li ng-repeat="step in selected.currentBuild.steps">
+                    <a ng-href="{{step.logs[0][1]}}">Log for step: {{step.name}}</a>
+                </li>
+            </ul>
+            <hr class="{{selected.class}}">
             <p>
                 <strong>Last Job:</strong>
                 <a ng-href="http://ciat.baserock.org:8010/builders/{{selected.name}}/builds/{{selected.lastBuild.number}}">

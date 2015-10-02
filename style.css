@@ -136,3 +136,7 @@ h1>em>a:hover {
 :not(.active) > .progress {
     display: none;
 }
+
+.hide {
+    display: none;
+}
