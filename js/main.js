@@ -52,91 +52,91 @@ app.controller('VisualisationController', function($scope, $http, $q, $interval)
                                          '/builds/' + latestBuildNumber;
                         $http.get(latestBuildsPath).then(function(estimationResponse) {
 
-                        var currentTime = Math.floor((new Date()).getTime() / 1000)
-                        var timeRunning = 0;
-                        if (state === 'building') {
-                            lastBuildID = value.cachedBuilds[value.cachedBuilds.length - 2];
-                             timeRunning = currentTime - estimationResponse.data.times[0];
-                        } else {
-                            lastBuildID = value.cachedBuilds[value.cachedBuilds.length - 1];
-                        }
-
-                        var buildsPath = apiBase + '/builders/' + key +
-                                         '/builds/' + lastBuildID;
-
-
-                        $http.get(buildsPath).then(function(response) {
-                            var progress = 100;
-                            var previousTime = response.data.times[1] - response.data.times[0];
-                            var success = checkInArray(response.data.text, 'successful');
-                            var failed = ! success;
-                            var details = {
-                                success: success,
-                                failed: failed,
-                                steps: response.data.steps,
-                                sourceStamps: response.data.sourceStamps,
-                                number: response.data.number
-                            };
-
-                            if (key.indexOf("Integration") > -1) {
-                                $scope.integrations.push({
-                                    name: key,
-                                    lastBuild: details,
-                                    data: value
-                                });
+                            var currentTime = Math.floor((new Date()).getTime() / 1000)
+                            var timeRunning = 0;
+                            if (state === 'building') {
+                                lastBuildID = value.cachedBuilds[value.cachedBuilds.length - 2];
+                                 timeRunning = currentTime - estimationResponse.data.times[0];
+                            } else {
+                                lastBuildID = value.cachedBuilds[value.cachedBuilds.length - 1];
                             }
-                            else if (key.indexOf("Build") > -1) {
-                                var progressStyle = "progress-bar-success progress-bar-striped"
-                                if (state === "building" ) {
-                                    progressStyle = "progress-bar-warning progress-bar-striped active"
-                                    progress = (timeRunning * 100) / previousTime;
-                                    //alert (currentTime)
-                                    //alert (estimationResponse.data.times[0])
-                                    //alert (timeRunning)
-                                    //alert (previousTime)
-                                    if (progress > 100 ) {
-                                        progress = 90;
-                                    }
+
+                            var buildsPath = apiBase + '/builders/' + key +
+                                             '/builds/' + lastBuildID;
+
+
+                            $http.get(buildsPath).then(function(response) {
+                                var progress = 100;
+                                var previousTime = response.data.times[1] - response.data.times[0];
+                                var success = checkInArray(response.data.text, 'successful');
+                                var failed = ! success;
+                                var details = {
+                                    success: success,
+                                    failed: failed,
+                                    steps: response.data.steps,
+                                    sourceStamps: response.data.sourceStamps,
+                                    number: response.data.number
+                                };
+
+                                if (key.indexOf("Integration") > -1) {
+                                    $scope.integrations.push({
+                                        name: key,
+                                        lastBuild: details,
+                                        data: value
+                                    });
                                 }
-                                $scope.builds.push({
-                                    name: key,
-                                    lastBuild: details,
-                                    data: value,
-                                    progress: progress,
-                                    style: progressStyle
+                                else if (key.indexOf("Build") > -1) {
+                                    var progressStyle = "progress-bar-success progress-bar-striped"
+                                    if (state === "building" ) {
+                                        progressStyle = "progress-bar-warning progress-bar-striped active"
+                                        progress = (timeRunning * 100) / previousTime;
+                                        //alert (currentTime)
+                                        //alert (estimationResponse.data.times[0])
+                                        //alert (timeRunning)
+                                        //alert (previousTime)
+                                        if (progress > 100 ) {
+                                            progress = 90;
+                                        }
+                                    }
+                                    $scope.builds.push({
+                                        name: key,
+                                        lastBuild: details,
+                                        data: value,
+                                        progress: progress,
+                                        style: progressStyle
+    
+                                    });
+                                }
+                                else if(key.indexOf("Deploy") > -1) {
+                                    $scope.deploys.push({
+                                        name: key,
+                                        lastBuild: details,
+                                        data: value
+                                    });
+                                }
+                                else if(key.indexOf("Test") > -1) {
+                                    $scope.tests.push({
+                                        name: key,
+                                        lastBuild: details,
+                                        data: value
+                                    });
+                                }
+                                else if(key.indexOf("Publish") > -1) {
+                                    $scope.publishings.push({
+                                        name: key,
+                                        lastBuild: details,
+                                        data: value
+                                    });
+                                }
 
-                                });
-                            }
-                            else if(key.indexOf("Deploy") > -1) {
-                                $scope.deploys.push({
-                                    name: key,
-                                    lastBuild: details,
-                                    data: value
-                                });
-                            }
-                            else if(key.indexOf("Test") > -1) {
-                                $scope.tests.push({
-                                    name: key,
-                                    lastBuild: details,
-                                    data: value
-                                });
-                            }
-                            else if(key.indexOf("Publish") > -1) {
-                                $scope.publishings.push({
-                                    name: key,
-                                    lastBuild: details,
-                                    data: value
-                                });
-                            }
 
 
-
-                            $scope.builds.sort(function(a, b) {
-                                if(a.name < b.name) return -1;
-                                if(a.name > b.name) return 1;
-                                return 0;
+                                $scope.builds.sort(function(a, b) {
+                                    if(a.name < b.name) return -1;
+                                    if(a.name > b.name) return 1;
+                                    return 0;
+                                });
                             });
-                        });
                         });
                     });
                 });
