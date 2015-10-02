@@ -132,3 +132,7 @@ h1>em>a:hover {
     background-color: grey;
     margin-bottom: 0px;
 }
+
+:not(.active) > .progress {
+    visibility: hidden;
+}
