@@ -76,10 +76,10 @@
         <div class="detail-contents">
             <p><strong>State:</strong> {{selected.data.state}}</p>
             <p>
-                <strong>Last Build:</strong>
-                <a ng-href="/#/builders/{{selected.name}}/builds/{{selected.lastBuild.number}}">
-                    {{selected.lastBuild.number}} at
+                <strong>Last Job:</strong>
+                <a ng-href="http://ciat.baserock.org:8010/builders/{{selected.name}}/builds/{{selected.lastBuild.number}}">
                     {{selected.lastBuild.sourceStamps[0].changes[0].at}}
+                    / Job ID: {{selected.lastBuild.number}}
                 </a>
             </p>
             <p><strong>Logs for {{selected.lastBuild.number}}:</strong></p>
