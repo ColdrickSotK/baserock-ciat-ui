@@ -82,10 +82,10 @@
                     / Job ID: {{selected.lastBuild.number}}
                 </a>
             </p>
-            <p><strong>Logs for {{selected.lastBuild.number}}:</strong></p>
+            <p><strong>Last Job logs:</strong></p>
             <ul>
                 <li ng-repeat="step in selected.lastBuild.steps">
-                    <a ng-href="{{step.logs[0][1]}}">{{step.name}} {{step.logs[0][0]}}</a>
+                    <a ng-href="{{step.logs[0][1]}}">Log for step: {{step.name}}</a>
                 </li>
             </ul>
             <p><a ng-href="/#/builders/{{selected.name}}/">Full builder details</a></p>
