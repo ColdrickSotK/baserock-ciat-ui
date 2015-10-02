@@ -152,6 +152,12 @@ app.controller('VisualisationController', function($scope, $http, $q, $interval)
             } else {
                 $scope.selected = step;
             }
+            if ($scope.selected.data.state === "building") {
+                $scope.selected.state = "In progress";
+            }
+            else {
+                $scope.selected.state = "Idle";
+            }
         };
 
         function cancelRefresh() {
