@@ -86,7 +86,7 @@ app.controller('VisualisationController', function($scope, $http, $q, $interval)
                                 });
                             }
                             else if (key.indexOf("Build") > -1) {
-                                var progressStyle = "progress-bar-success progress-bar-striped ng-hide"
+                                var progressStyle = "progress-bar-success progress-bar-striped"
                                 if (state === "building" ) {
                                     progressStyle = "progress-bar-warning progress-bar-striped active"
                                     progress = (timeRunning * 100) / previousTime;
