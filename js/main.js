@@ -131,10 +131,10 @@ app.controller('VisualisationController', function($scope, $http, $q, $interval)
 
 
 
-                            $scope.steps.sort(function(a, b) {
-                                var left = parseInt(a.name.split('.', 1));
-                                var right = parseInt(b.name.split('.', 1));
-                                return left - right;
+                            $scope.builds.sort(function(a, b) {
+                                if(a.name < b.name) return -1;
+                                if(a.name > b.name) return 1;
+                                return 0;
                             });
                         });
                         });
