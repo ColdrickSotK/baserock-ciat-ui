@@ -111,7 +111,7 @@ app.controller('VisualisationController', function($scope, $http, $q, $interval)
                                         style: progressStyle
                                     });
                                 }
-                                else if(key.indexOf("Deploy") > -1) {
+                                else if(key.indexOf("Image") > -1) {
                                     $scope.deploys.push({
                                         name: key,
                                         lastBuild: details,
