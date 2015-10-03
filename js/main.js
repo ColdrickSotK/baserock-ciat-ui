@@ -186,6 +186,21 @@ app.controller('BuilderDetailController',
     function($scope, $http, $routeParams) {
         var builderUrl = apiBase + '/builders/' + $routeParams.name;
 
+        function getImportantLog(data) {
+            // Default to last entry in logs array
+            var logLink = data.logs[data.logs.length - 1][1];
+            if (!checkInArray(data.text, 'successful') && !!data.times[1]) {
+                // Build failed, so important log is the one with the failure
+                for (var i = 0; i < data.steps.length; i++) {
+                    var step = data.steps[i];
+                    if (checkInArray(step.text, 'failed')) {
+                        logLink = step.logs[step.logs.length - 1][1];
+                    }
+                }
+            }
+            return logLink;
+        }
+
         // GET details of the builder
         $http.get(builderUrl).then(function(builder) {
             $scope.builder = {
@@ -204,6 +219,7 @@ app.controller('BuilderDetailController',
                     number: n,
                     startTime: build_data.times[0],
                     finishTime: build_data.times[1],
+                    logLink: getImportantLog(build_data),
                     data: build_data
                 });
             }
