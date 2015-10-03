@@ -16,10 +16,6 @@ app.config(['$routeProvider', function($routeProvider) {
         controller: 'BuilderDetailController',
         templateUrl: 'partials/builder_detail.html'
     })
-    .when('/builders/:name/build/:number', {
-        controller: 'BuildDetailController',
-        templateUrl: 'partials/build_detail.html'
-    })
     .otherwise({redirectTo: '/'});
 }]);
 
