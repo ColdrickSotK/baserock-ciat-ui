@@ -140,3 +140,7 @@ h1>em>a:hover {
 .hide {
     display: none;
 }
+
+.table {
+    text-align: center;
+}
