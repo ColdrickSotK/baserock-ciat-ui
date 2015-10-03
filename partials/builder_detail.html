@@ -4,24 +4,39 @@
             <h3 class="panel-title"><strong>{{builder.name}}</strong></h3>
         </div>
         <div class="panel-body">
-            <p><strong>State:</strong> {{builder.data.state}}</p>
-            <p><strong>Recent Builds:</strong></p>
-            <table class="table table-striped table-hover">
-            <thead><strong>
-                <td>Time</td>
-                <td>Revision</td>
-                <td>Result</td>
-                <td>Number</td>
-            </strong>
+            <p><strong>State:</strong> {{builder.data.state == 'building' ? 'In progress' : 'Idle'}}</p>
+            <p><strong>Recent Jobs:</strong></p>
+            <table class="table table-striped table-hover"
+                   ng-if="builds.length > 0">
+            <thead>
+                <td><strong>Job ID</strong></td>
+                <td><strong>Start Time</strong></td>
+                <td><strong>Elapsed Time</strong></td>
+                <!-- TODO <td><strong>Definitions SHA</strong></td> -->
+                <td><strong>Result</strong></td>
             </thead>
             <tbody>
-                <!-- TODO: Load all builds into $scope.builds rather than
-                           using builder.data.cachedBuilds -->
-                <tr ng-repeat="build in builder.data.cachedBuilds">
-                    <td>build.time</td>
-                    <td>build.revision</td>
-                    <td>build.result</td>
-                    <td>{{build}}</td>
+                <tr ng-repeat="build in builds">
+                    <td>{{build.number}}</td>
+                    <td>{{build.startTime * 1000 | date: 'EEE dd MMM yyyy, HH:mm:ss'}}</td>
+                    <td>
+                        <span ng-if="build.finishTime">
+                        {{(build.finishTime - build.startTime) * 1000 | date: 'HH:mm:ss'}}
+                        </span>
+                    </td>
+                    <!-- <td>{{build.definitions_sha}}</td> -->
+                    <td>
+                        <span class="label"
+                              ng-if="build.finishTime"
+                              ng-class="{'label-success': build.success,
+                                         'label-danger': !build.success}">
+                            {{build.success ? 'Successful' : 'Failed'}}
+                        </span>
+                        <span class="label label-warning"
+                              ng-if="!build.finishTime">
+                            In progress
+                        </span>
+                    </td>
                 </tr>
             </tbody>
             </table>

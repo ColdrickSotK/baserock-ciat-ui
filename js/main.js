@@ -1,6 +1,16 @@
 var apiBase = 'http://ciat.baserock.org:8010/json';
 var app = angular.module('ciat', ['ngRoute']);
 
+function checkInArray(array, key) {
+    if (array) {
+        if (array.indexOf(key) > -1) {
+            return true;
+        }
+    }
+    return false;
+}
+
+
 app.config(['$httpProvider', function($httpProvider) {
         $httpProvider.defaults.useXDomain = true;
         delete $httpProvider.defaults.headers.common['X-Requested-With'];
@@ -20,15 +30,6 @@ app.config(['$routeProvider', function($routeProvider) {
 }]);
 
 app.controller('VisualisationController', function($scope, $http, $q, $interval) {
-        function checkInArray(array, key) {
-            if (array) {
-                if (array.indexOf(key) > -1) {
-                    return true;
-                }
-            }
-            return false;
-        }
-
         function load() {
             $scope.steps = [];
             $scope.integrations = [];
@@ -183,11 +184,29 @@ app.controller('VisualisationController', function($scope, $http, $q, $interval)
 
 app.controller('BuilderDetailController',
     function($scope, $http, $routeParams) {
-        $http.get(apiBase + '/builders/' + $routeParams.name).then(function(builder) {
+        var builderUrl = apiBase + '/builders/' + $routeParams.name;
+
+        // GET details of the builder
+        $http.get(builderUrl).then(function(builder) {
             $scope.builder = {
                 name: $routeParams.name,
                 data: builder.data
             };
+        });
+
+        $scope.builds = [];
+        // GET list of all builds from this builder
+        $http.get(builderUrl + '/builds/_all').then(function(response) {
+            for (var n in response.data) {
+                var build_data = response.data[n];
+                $scope.builds.push({
+                    success: checkInArray(build_data.text, 'successful'),
+                    number: n,
+                    startTime: build_data.times[0],
+                    finishTime: build_data.times[1],
+                    data: build_data
+                });
+            }
         });
     }
 );
