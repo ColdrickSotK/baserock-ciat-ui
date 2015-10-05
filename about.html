@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href='https://fonts.googleapis.com/css?family=Sarpanch:800' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link href='style.css' rel='stylesheet' type='text/css'>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <h1>
+        <a href="/#/">
+            <img src="logo.png">
+        </a>
+        <em>| C.I.A.T.: Continuous Integration and Automated Testing</em>
+    </h1>
+    <div class="content">
+        <div class="container">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><strong>About</strong></h3>
+                </div>
+                <div class="panel-body">
+                    <h4>Introduction</h4>
+                    <p>
+                       Continuous Integration and Automated Testing (C.I.A.T.) is a Baserock
+                       initiative that creates a Linux based operating system using existing
+                       Open Source software through an automated heart-beat pipeline process
+                       with 6 main stages:
+                    </p>
+                    <ol>
+                        <li>Detection of a new version of a component included in our customised OS.</li>
+                        <li>Integration of the update into the OS definition.</li>
+                        <li>Creation a new build based on the updated definition.</li>
+                        <li>Preparation of the builds/images and artifacts and provision of a bare-metal or VM farm for (automated) testing.</li>
+                        <li>Test the build.</li>
+                        <li>Publication of the candidate and the associated artifacts, making them ready for verification and validation.</li>
+                    </ol>
+                    <p>
+                        The idea behind Baserock, implemented in CIAT, is to integrate the
+                        latest software from relevant upstream projects as soon as they
+                        release it. Staying as close to upstream as possible simplifies
+                        integration and maintenance at big scale.
+                    </p>
+                    <hr />
+                    <h4>Implementation</h4>
+                    <p>In the current implementation, CIAT is divided in five main stages:</p>
+                    <ol>
+                        <li>
+                            <strong>Integration:</strong>
+                            <p>This is the process that check if the there are upstream changes relevant to our customized OS and upgrade (integrate) those changes in the definitions.</p>
+                        </li>
+                        <li>
+                            <strong>Build:</strong>
+                            <p>Building stage. In the current implementation we are dealing with two different builds, a GENIVI based demo platform and a ARM base image.</p>
+                        </li>
+                        <li>
+                            <strong>Image creation:</strong>
+                            <p>Creation of the image out of the build and store it, together with the different artifacts required in a file server so they are available for further stages.</p>
+                        </li>
+                        <li>
+                            <strong>Provision and test:</strong>
+                            <p>Once published, VMs are created and deployed in a cloud so test can be run automatically.</p>
+                        </li>
+                        <li>
+                            <strong>Publish candidate:</strong>
+                            <p>If tests pass, the image is declared as candidate, together with the artifacts, published and announced.</p>
+                        </li>
+                    </ol>
+                    <p>
+                        CIAT currently automatically attempts to integrate and build when it
+                        detects new commits in systemd or the Linux kernel, and shows whether
+                        or not the tests still pass with those new versions.
+                    </p>
+                    <p>
+                        By clicking in each box, you can access to further information about
+                        the process currently running and the previous one, including logs,
+                        together with a summary of recent processes. You will identify which
+                        process are in execution state by an animation and a progress bar.
+                        All this information will help you, not just to get context of what
+                        is happening, but also to analyse failures.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

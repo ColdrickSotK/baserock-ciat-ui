@@ -58,14 +58,18 @@ h1>em>a:hover {
     width: 20%;
     margin: 0 auto;
 }
-.lanelink:link {
+.lanelink:link, .about-link:link {
     color: white;
 }
-.lanelink:visited {
+.lanelink:visited, .about-link:visited {
     color: white;
 }
-.lanelink:hover {
+.lanelink:hover, .about-link:hover {
     color: #F84525;
+}
+
+.about-link {
+    padding: 10px;
 }
 
 .box:hover {
